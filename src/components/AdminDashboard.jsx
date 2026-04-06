@@ -298,9 +298,13 @@ export default function AdminDashboard() {
     const fetchInvoices = async () => {
     try {
         const response = await invoiceAPI.getAllInvoices();
-        // Sort by block alphabetically, then by unit number
+        // Sort: PENDING first, then by block and unit number
         const sorted = response.data.sort((a, b) => {
-            // First sort by block
+            // First priority: PENDING invoices come first
+            if (a.status === 'PENDING' && b.status !== 'PENDING') return -1;
+            if (a.status !== 'PENDING' && b.status === 'PENDING') return 1;
+            
+            // Within same status, sort by block
             const blockCompare = a.block.localeCompare(b.block);
             if (blockCompare !== 0) return blockCompare;
             
@@ -318,6 +322,7 @@ export default function AdminDashboard() {
         setInvoicesLoading(false);
     }
 };
+
 
 
 
