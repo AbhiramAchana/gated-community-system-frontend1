@@ -296,16 +296,25 @@ export default function AdminDashboard() {
     };
 
     const fetchInvoices = async () => {
-        try {
-            const response = await invoiceAPI.getAllInvoices();
-            setInvoices(response.data);
-            // eslint-disable-next-line no-unused-vars
-        } catch (error) {
-            setInvoicesError('Failed to load invoices');
-        } finally {
-            setInvoicesLoading(false);
-        }
-    };
+    try {
+        const response = await invoiceAPI.getAllInvoices();
+        // Sort by status (PENDING first), then by due date (newest first)
+        const sorted = response.data.sort((a, b) => {
+            // First, sort by status (PENDING before PAID)
+            if (a.status === 'PENDING' && b.status !== 'PENDING') return -1;
+            if (a.status !== 'PENDING' && b.status === 'PENDING') return 1;
+            // Then sort by due date (newest first)
+            return new Date(b.dueDate) - new Date(a.dueDate);
+        });
+        setInvoices(sorted);
+        // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+        setInvoicesError('Failed to load invoices');
+    } finally {
+        setInvoicesLoading(false);
+    }
+};
+
 
     const fetchProperties = async () => {
         try {
