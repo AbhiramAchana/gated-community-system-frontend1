@@ -158,7 +158,7 @@ This project is part of an academic capstone project.
 
 ## 👥 Authors
 
-- Your Name - [GitHub](https://github.com/AbhiramAchana)
+- Your Name - [AbhiramAchana](https://github.com/AbhiramAchana)
 
 ## 🔗 Links
 
