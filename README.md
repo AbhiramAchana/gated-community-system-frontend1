@@ -162,6 +162,6 @@ This project is part of an academic capstone project.
 
 ## 🔗 Links
 
-- **Backend Repository**: [(https://github.com/AbhiramAchana/gated-community-system-backend1)]
-- **Live Demo**: [(https://gated-community-system-frontend1.vercel.app/)]
+- **Backend Repository**: [BackEnd Repository](https://github.com/AbhiramAchana/gated-community-system-backend1)
+- **Live Demo**: [Live Website](https://gated-community-system-frontend1.vercel.app/)
 
